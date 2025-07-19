@@ -4,7 +4,7 @@ import { fetchAllEmployees, addSingleEmployee, addMultipleEmployees } from "../c
 const router = Router();
 
 router.route("/").get(fetchAllEmployees);
-router.route("/add-single").post(addSingleEmployee);
-router.route("/add-multiple").post(addMultipleEmployees);
+router.route("/").post(addSingleEmployee);
+router.route("/bulk").post(addMultipleEmployees);
 
 export default router;
