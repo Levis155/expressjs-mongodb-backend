@@ -1,10 +1,11 @@
 import { Router } from "express";
-import { fetchAllEmployees, addSingleEmployee, addMultipleEmployees, updateEmployee } from "../controllers/employee.controllers.js";
+import { fetchAllEmployees, addSingleEmployee, addMultipleEmployees, updateEmployee, deleteEmployee, deleteAllEmployees } from "../controllers/employee.controllers.js";
 
 const router = Router();
 
 router.route("/").get(fetchAllEmployees).post(addSingleEmployee);
 router.route("/bulk").post(addMultipleEmployees);
-router.route("/:id").patch(updateEmployee);
+router.route("/all").delete(deleteAllEmployees);
+router.route("/:id").patch(updateEmployee).delete();
 
 export default router;
