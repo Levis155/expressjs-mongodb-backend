@@ -9,3 +9,15 @@ export const fetchAllEmployees = async (req, res) => {
         res.status(500).json({message: "Something went wrong"})
     }
 }
+
+export const addSingleEmployee = async (req, res) => {
+    try{
+        const {empName, age, location, email} = req.body;
+
+        const newEmployee = await Employee.create({empName, age, location, email});
+
+        res.status(200).json({data: newEmployee});
+    } catch (err) {
+        res.status(500).json({message: "Something went wrong"})
+    }
+}

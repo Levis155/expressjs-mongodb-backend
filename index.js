@@ -9,6 +9,7 @@ const app = express();
 
 connectDB();
 
+app.use(express.json());
 app.use("/employee", employeeRouter);
 
 
