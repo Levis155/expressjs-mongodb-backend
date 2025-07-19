@@ -6,7 +6,7 @@ export const fetchAllEmployees = async (req, res) => {
 
         res.status(200).json({data: allEmployees})
     } catch (err) {
-        res.status(500).json({message: "Something went wrong"})
+        res.status(500).json({message: "Failed to fetch employees."})
     }
 }
 
@@ -16,8 +16,21 @@ export const addSingleEmployee = async (req, res) => {
 
         const newEmployee = await Employee.create({empName, age, location, email});
 
-        res.status(200).json({data: newEmployee});
+        res.status(201).json({data: newEmployee});
     } catch (err) {
-        res.status(500).json({message: "Something went wrong"})
+        res.status(500).json({message: "Failed to add employee"})
     }
 }
+
+export const addMultipleEmployees = async (req, res) => {
+  try {
+    const employees = req.body;
+
+    const createdEmployees = await Employee.create(employees); 
+
+    res.status(201).json({ data: createdEmployees });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to add employees" });
+  }
+};
