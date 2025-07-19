@@ -80,3 +80,17 @@ export const deleteAllEmployees = async (req, res) => {
   }
 };
 
+export const deleteRetiredEmployees = async (req, res) => {
+  try {
+    await Employee.deleteMany({ age: { $gte: 50 } });
+
+    res.status(200).json({
+      message: "Retired employees deleted successfully",
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to delete employees" });
+  }
+};
+
+
